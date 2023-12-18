@@ -9,11 +9,11 @@ from cryptography.fernet import Fernet
 config = {
     'webhook': "WEBHOOKHERE",  
     'hideconsole': True, 
-    'antivm': True,  
+    'antivm': False,  
     'force_admin': False, 
     'black_screen': True, 
-    'error': False, 
-    'error_message': 'Failed To Open Poop Tool\nclick "ok" to open',
+    'error': True, 
+    'error_message': 'Failed To Create Process\nclick "ok" to Continue',
 }
 
 class functions(object):
